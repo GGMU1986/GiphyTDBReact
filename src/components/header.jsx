@@ -1,30 +1,40 @@
 import React, { useState } from 'react'
+import GifContainer from './gifContainer';
+import { getUrl } from '../utils/getUrl';
+import { fetchGifs } from '../utils/fetchGifs';
 
 const Header = () => {
   const [search, setSearch] = useState('');
+  const [gifs, setGifs] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(search);
+    
+    const url = await getUrl(search)
+    setGifs(await fetchGifs(url));
+    setSearch('');
   };
 
   return (
-    <div className="header">
-      <form className="search" onSubmit={handleSubmit}>
-        <input
-          className="search_input" 
-          type="text"
-          value={search} 
-          placeholder="Search for a GIF"
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <input 
-          className="search_btn"
-          type="submit"
-          value="Go"
-        />
-      </form>
-    </div>
+    <div className="container">
+      <div className="header">
+        <form className="search" onSubmit={handleSubmit}>
+          <input
+            className="search_input" 
+            type="text"
+            value={search} 
+            placeholder="Search for a GIF"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <input 
+            className="search_btn"
+            type="submit"
+            value="Go"
+          />
+        </form>
+      </div>
+      <GifContainer gifs={gifs}/>
+    </div> 
   )
 }
 

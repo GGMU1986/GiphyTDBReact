@@ -59,3 +59,14 @@ ol, ul {
   color: white;
   cursor: pointer;
 }
+
+.gifs_container{
+  margin: 10%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gif_item{
+  margin: 5px;
+  border: red solid 2px;
+}
