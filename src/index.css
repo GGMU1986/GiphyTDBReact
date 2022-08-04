@@ -32,7 +32,8 @@ ol, ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 200px;
+  margin-top: 5%;
+  height: 100px;
 }
 
 .search{
@@ -80,21 +81,28 @@ ol, ul {
 }
 
 .gifs_container{
-  margin: 5% 10%;
   display: flex;
   flex-wrap: wrap;
 }
 
-.gif_item{
-  margin: 10px;
-  width: 300px;
-  /* height: 200px; */
-
-}
-
 img{
   width: 100%;
-  object-fit: cover;
+}
+
+.my-masonry-grid {
+  display: -webkit-box; 
+  display: -ms-flexbox; 
+  display: flex;
+  margin: 5% 10%;
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 10px; 
+  background-clip: padding-box;
+}
+
+.my-masonry-grid_column > div { 
+  padding-bottom: 5px;
 }
 
 /* @keyframes grow {
