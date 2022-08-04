@@ -1,13 +1,13 @@
 import React from 'react';
+import uuid from 'react-uuid'
 import GifItem from './gifItem';
 
 const GifContainer = ({ gifs }) => {
-  console.log(gifs?.data)
-  const data = gifs?.data;
-  if (data){
+ 
+  if (gifs){
     return (
       <div className="gifs_container">
-        {data.map(gif => <GifItem key={gif.id} gif={gif} />)}
+        {gifs.map(gif => <GifItem key={uuid()} gif={gif} />)}
       </div>
     )
   } 

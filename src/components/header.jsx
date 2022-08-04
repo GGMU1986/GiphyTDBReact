@@ -1,19 +1,51 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import GifContainer from './gifContainer';
 import { getUrl } from '../utils/getUrl';
 import { fetchGifs } from '../utils/fetchGifs';
 
 const Header = () => {
   const [search, setSearch] = useState('');
+  const [page, setPage] = useState(1);
   const [gifs, setGifs] = useState(null);
+  // const [url, setUrl] = useState('');
+
+  let url;
+  let searchValue;
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+    setGifs(null);
+    console.log(gifs)
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const url = await getUrl(search)
-    setGifs(await fetchGifs(url));
+
+    url = getUrl(search, page);
+    let content = await fetchGifs(url) 
+    setGifs(content?.data);
+    searchValue = search;
     setSearch('');
+    setPage(prevPage => prevPage += 1);
   };
+  
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+  }, [])
+
+  const handleScroll = async (e) => {
+    const top = e.target.documentElement.scrollTop;
+    const innerHeight = window.innerHeight;
+    const height = e.target.documentElement.scrollHeight;
+
+    if ((top + 1) + innerHeight >= height){
+      url = getUrl(searchValue, page)
+      const newContent = await fetchGifs(url)
+      const data = newContent.data
+      setGifs(prevGifs => [ ...prevGifs, ...data ])
+      setPage(prevPage => prevPage += 1);
+    }
+  }
 
   return (
     <div className="container">
@@ -24,7 +56,7 @@ const Header = () => {
             type="text"
             value={search} 
             placeholder="Search for a GIF"
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => handleSearch(e)}
           />
           <input 
             className="search_btn"
@@ -33,9 +65,9 @@ const Header = () => {
           />
         </form>
       </div>
-      <GifContainer gifs={gifs}/>
+      <GifContainer gifs={gifs} />
     </div> 
   )
 }
 
-export default Header
+export default Header;
