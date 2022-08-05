@@ -4,7 +4,6 @@ import GifItem from './gifItem';
 import Masonry from 'react-masonry-css';
 
 const GifContainer = ({ gifs }) => {
- 
   if (gifs){
     return (
       <Masonry

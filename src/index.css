@@ -54,14 +54,6 @@ ol, ul {
   font-family: inherit;
 }
 
-/* .search_input:focus{
-  width: 350px;
-  height: 50px;
-  border: none;
-  /* border-radius: 5%; */
-  /* animation: grow 0.5s ease-in forwards; */
-/* } */
-
 .search_btn{
   margin-left: 5px;
   border: none;
@@ -104,40 +96,3 @@ img{
 .my-masonry-grid_column > div { 
   padding-bottom: 5px;
 }
-
-/* @keyframes grow {
-  0%{
-    width: 300px;
-    height: 40px;
-    border: none;
-    border-radius: 5.5%;
-  }
-
-  25%{
-    width: 312px;
-    height: 42px;
-    border: none;
-    border-radius: 6%;
-  }
-  
-  50%{
-    width: 325px;
-    height: 45px;
-    border: none;
-    border-radius: 6.5%;
-  }
-  
-  75%{
-    width: 337px;
-    height: 48px;
-    border: none;
-    border-radius: 7%;
-  }
-  
-  100%{
-    width: 350px;
-    height: 50px;
-    border: none;
-    border-radius: 7.5%;
-  } */
-/* } */
